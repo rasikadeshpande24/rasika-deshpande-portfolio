@@ -1,0 +1,67 @@
+[00:00:00.876] Server  LOG     ✓ Ready in 596ms
+[00:00:09.906] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:10.080] Browser LOG     InteractiveBackground mounted. size: {"dpr":2,"height":797,"width":1455} bubbles: 30
+[00:14:10.163] Server  LOG     ✓ Compiled in 296ms
+[00:14:20.996] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:14:21.175] Browser LOG     InteractiveBackground mounted. size: {"dpr":2,"height":797,"width":1455} bubbles: 30
+[00:20:02.087] Server  LOG     ✓ Compiled in 62ms
+[00:20:55.608] Server  LOG     ✓ Compiled in 44ms
+[00:22:57.193] Server  LOG     ✓ Compiled in 23ms
+[00:23:49.114] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:23:49.275] Browser LOG     InteractiveBackground mounted. size: {"dpr":2,"height":797,"width":1455} bubbles: 30
+[00:28:01.305] Server  LOG     ✓ Compiled in 27ms
+[00:28:01.879] Browser LOG     InteractiveBackground mounted. size: {"dpr":2,"height":797,"width":1455} bubbles: 30
+[00:28:11.592] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:28:11.749] Browser LOG     InteractiveBackground mounted. size: {"dpr":2,"height":797,"width":1455} bubbles: 30
+[00:34:51.314] Server  LOG     ✓ Compiled in 19ms
+[00:34:51.878] Browser LOG     InteractiveBackground mounted. size: {"dpr":2,"height":797,"width":1455} bubbles: 30
+[00:38:15.997] Server  LOG     ✓ Compiled in 20ms
+[00:38:24.083] Server  LOG     ✓ Compiled in 19ms
+[00:38:31.603] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:38:31.764] Browser LOG     InteractiveBackground mounted. size: {"dpr":2,"height":797,"width":1455} bubbles: 30
+[00:39:19.432] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:39:19.587] Browser LOG     InteractiveBackground mounted. size: {"dpr":2,"height":797,"width":1455} bubbles: 30
+[00:44:23.397] Server  LOG     ✓ Compiled in 51ms
+[00:45:22.469] Server  LOG     ✓ Compiled in 18ms
+[00:46:25.545] Server  LOG     ✓ Compiled in 15ms
+[00:46:33.214] Server  LOG     ✓ Compiled in 33ms
+[00:47:52.145] Server  LOG     ✓ Compiled in 19ms
+[00:48:00.974] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:48:01.128] Browser LOG     InteractiveBackground mounted. size: {"dpr":2,"height":797,"width":1455} bubbles: 30
+[00:48:18.119] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:48:18.278] Browser LOG     InteractiveBackground mounted. size: {"dpr":2,"height":797,"width":1455} bubbles: 30
+[00:48:39.286] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:48:39.446] Browser LOG     InteractiveBackground mounted. size: {"dpr":2,"height":797,"width":1455} bubbles: 30
+[00:53:42.566] Server  LOG     ✓ Compiled in 19ms
+[00:55:34.458] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:55:34.621] Browser LOG     InteractiveBackground mounted. size: {"dpr":2,"height":797,"width":1455} bubbles: 30
+[00:55:47.406] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:55:47.574] Browser LOG     InteractiveBackground mounted. size: {"dpr":2,"height":797,"width":1455} bubbles: 30
+[00:55:50.245] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:55:50.403] Browser LOG     InteractiveBackground mounted. size: {"dpr":2,"height":797,"width":1455} bubbles: 30
+[00:59:01.901] Server  LOG     ✓ Compiled in 32ms
+[00:59:07.837] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:59:07.999] Browser LOG     InteractiveBackground mounted. size: {"dpr":2,"height":797,"width":1455} bubbles: 30
+[00:59:59.656] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:59:59.815] Browser LOG     InteractiveBackground mounted. size: {"dpr":2,"height":797,"width":1455} bubbles: 30
+[01:00:55.908] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:00:56.066] Browser LOG     InteractiveBackground mounted. size: {"dpr":2,"height":797,"width":1455} bubbles: 30
+[01:03:53.119] Server  LOG     ✓ Compiled in 19ms
+[01:04:09.930] Server  LOG     ✓ Compiled in 34ms
+[01:04:16.289] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:06:14.883] Server  LOG     ✓ Compiled in 19ms
+[01:07:57.716] Server  LOG     ✓ Compiled in 24ms
+[01:08:13.573] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:10:59.454] Server  LOG     ✓ Compiled in 15ms
+[01:11:05.658] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:13:04.398] Server  LOG     ✓ Compiled in 17ms
+[01:13:09.177] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:15:22.022] Server  LOG     ✓ Compiled in 20ms
+[01:15:28.060] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:16:23.972] Server  LOG     ✓ Compiled in 17ms
+[01:16:24.879] Browser LOG     InteractiveBackground mounted. size: {"dpr":2,"height":797,"width":1455} bubbles: 30
+[01:16:27.896] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:16:28.058] Browser LOG     InteractiveBackground mounted. size: {"dpr":2,"height":797,"width":1455} bubbles: 30
+[01:17:06.921] Server  LOG     ✓ Compiled in 20ms
+[01:17:11.159] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:17:11.315] Browser LOG     InteractiveBackground mounted. size: {"dpr":2,"height":797,"width":1455} bubbles: 30

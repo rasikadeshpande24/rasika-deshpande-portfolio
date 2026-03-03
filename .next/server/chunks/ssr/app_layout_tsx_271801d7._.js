@@ -1,0 +1,3 @@
+module.exports=[33290,a=>{"use strict";var b=a.i(7997);function c({children:a}){return(0,b.jsxs)("html",{lang:"en",children:[(0,b.jsxs)("head",{children:[(0,b.jsx)("meta",{charSet:"utf-8"}),(0,b.jsx)("meta",{name:"viewport",content:"width=device-width, initial-scale=1"})]}),(0,b.jsx)("body",{className:"bg-white",children:a})]})}a.s(["default",()=>c,"metadata",0,{title:"Rasika Deshpande - Software Developer",description:"Professional portfolio of Rasika Deshpande, a software developer specializing in full-stack development."}])}];
+
+//# sourceMappingURL=app_layout_tsx_271801d7._.js.map
