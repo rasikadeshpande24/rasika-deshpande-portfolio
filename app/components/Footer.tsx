@@ -1,4 +1,4 @@
-import { Github, Linkedin, Mail, Twitter, Heart, ArrowUp } from "lucide-react";
+import { Github, Linkedin, Mail, Twitter, ArrowUp } from "lucide-react";
 import { motion } from "motion/react";
 
 export function Footer() {
@@ -30,7 +30,7 @@ export function Footer() {
   ];
 
   return (
-    <footer className="relative bg-gradient-to-br from-gray-900 via-indigo-900 to-purple-900 text-white overflow-hidden">
+    <footer className="relative bg-gradient-to-br from-gray-900 via-indigo-900 to-purple-900 text-white overflow-hidden pt-7 sm:pt-7 pb-5 sm:pb-5">
       {/* Animated background elements */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-indigo-400 rounded-full blur-3xl"></div>
@@ -112,8 +112,7 @@ export function Footer() {
           {/* Bottom Footer */}
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <p className="text-gray-300 text-sm sm:text-base text-center sm:text-left">
-              &copy; {currentYear} Rasika Deshpande. Made with{" "}
-              <Heart className="inline-block text-red-400" size={16} /> and lots of ☕
+              &copy; {currentYear} Rasika Deshpande.
             </p>
             <motion.button
               onClick={scrollToTop}

@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import { BubbleMessage } from "./BubbleMessage";
+import { bubbleMessages } from "../utils/BubbleMessagesText";
 
 interface Bubble {
   x: number;
@@ -19,14 +20,6 @@ export function InteractiveBackground() {
   const particlesRef = useRef<Array<{ x: number; y: number; vx: number; vy: number; life: number }>>([]);
   const sizeRef = useRef({ width: 0, height: 0, dpr: 1 });
   const messageTimerRef = useRef<number | null>(null);
-  const messages = [
-    "Clean architecture makes me unusually happy.",
-    "APIs are my comfort zone.",
-    "Always building. Always learning.",
-    "Refactoring is underrated therapy.",
-    "Data integrity > quick hacks.",
-    "Engineering with intent.",
-  ];
   const [activeMessage, setActiveMessage] = useState<{
     text: string;
     x: number;
@@ -60,25 +53,28 @@ export function InteractiveBackground() {
     window.addEventListener("resize", resize);
 
     const createBubbles = (count: number) => {
-      const w = sizeRef.current.width || canvas.getBoundingClientRect().width;
-      const h = sizeRef.current.height || canvas.getBoundingClientRect().height;
+    const w = sizeRef.current.width || canvas.getBoundingClientRect().width;
+    const h = sizeRef.current.height || canvas.getBoundingClientRect().height;
 
-      bubblesRef.current = Array.from({ length: count }, () => {
-        const isSide = Math.random() < 0.7;
-        let x;
+    const centerX = w / 2;
+    const centerY = h / 2;
 
-        if (isSide) {
-          const left = Math.random() < 0.5;
-          x = left
-            ? Math.random() * (0.35 * w)
-            : w - Math.random() * (0.35 * w);
-        } else {
-          x = 0.35 * w + Math.random() * (0.3 * w);
-        }
+    const exclusionRadius = Math.min(w, h) * 0.45; 
+    // adjust 0.22 to increase/decrease empty middle area
 
-        const y = Math.random() * h;
+    const bubbles: Bubble[] = [];
 
-        return {
+    while (bubbles.length < count) {
+      const x = Math.random() * w;
+      const y = Math.random() * h;
+
+      const dx = x - centerX;
+      const dy = y - centerY;
+      const distanceFromCenter = Math.sqrt(dx * dx + dy * dy);
+
+      // Only accept positions OUTSIDE the central circle
+      if (distanceFromCenter > exclusionRadius) {
+        bubbles.push({
           x,
           y,
           baseX: x,
@@ -86,9 +82,12 @@ export function InteractiveBackground() {
           radius: Math.random() * 24 + 12,
           phase: Math.random() * Math.PI * 2,
           popping: false,
-        };
-      });
-    };
+        });
+      }
+    }
+
+    bubblesRef.current = bubbles;
+  };
     createBubbles(window.innerWidth < 1024 ? 20 : 30);
     // Debug: log initial sizing and bubble count
     console.log('InteractiveBackground mounted. size:', sizeRef.current, 'bubbles:', bubblesRef.current.length);
@@ -123,7 +122,7 @@ export function InteractiveBackground() {
 
       // pick random message
       const random =
-        messages[Math.floor(Math.random() * messages.length)];
+        bubbleMessages[Math.floor(Math.random() * bubbleMessages.length)];
 
       const w = sizeRef.current.width;
       const h = sizeRef.current.height;
