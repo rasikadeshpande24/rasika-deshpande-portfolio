@@ -6,6 +6,7 @@ import { InteractiveBackground } from "./InteractiveBackground";
 
 export function Hero() {
   const [showHint, setShowHint] = useState(true);
+  const [isDesktop, setIsDesktop] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -22,9 +23,20 @@ export function Hero() {
     }
   };
 
+  useEffect(() => {
+    const checkScreen = () => {
+      setIsDesktop(window.innerWidth >= 768);
+    };
+
+    checkScreen();
+    window.addEventListener("resize", checkScreen);
+
+    return () => window.removeEventListener("resize", checkScreen);
+  }, []);
+
   return (
     <section className="relative z-30 relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 pt-20">
-      <InteractiveBackground />
+      {isDesktop && <InteractiveBackground />}
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
@@ -136,9 +148,9 @@ export function Hero() {
             className="flex items-center justify-center gap-6"
           >
             {[
-              { icon: Github, href: "#", label: "GitHub" },
-              { icon: Linkedin, href: "#", label: "LinkedIn" },
-              { icon: Mail, href: "#", label: "Email" },
+              { icon: Github, href: "https://github.com/rasikadeshpande24", label: "GitHub" },
+              { icon: Linkedin, href: "https://www.linkedin.com/in/rasikadeshpande2401/", label: "LinkedIn" },
+              { icon: Mail, href: "mailto:rsdesh24@gmail.com", label: "Email" },
             ].map((social, index) => (
               <motion.a
                 key={index}
@@ -147,6 +159,8 @@ export function Hero() {
                 aria-label={social.label}
                 whileHover={{ scale: 1.1, y: -5 }}
                 whileTap={{ scale: 0.9 }}
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <social.icon size={24} />
               </motion.a>
@@ -155,7 +169,7 @@ export function Hero() {
         </div>
       </div>
 
-      {showHint && (
+      {showHint && isDesktop && (
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0, scale: [1, 1.05, 1] }}

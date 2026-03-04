@@ -32,11 +32,6 @@ export function InteractiveBackground() {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    // Hide & skip on small screens (mobile)
-    if (window.innerWidth < 768) {
-      canvas.style.display = 'none';
-      return;
-    }
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
