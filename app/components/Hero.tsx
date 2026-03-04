@@ -1,9 +1,20 @@
+import { useState, useEffect } from "react";
 import { ArrowRight, Github, Linkedin, Mail } from "lucide-react";
 import { motion } from "motion/react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { InteractiveBackground } from "./InteractiveBackground";
 
 export function Hero() {
+  const [showHint, setShowHint] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowHint(false);
+    }, 4500);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
@@ -144,6 +155,18 @@ export function Hero() {
         </div>
       </div>
 
+      {showHint && (
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0, scale: [1, 1.05, 1] }}
+          transition={{ duration: 0.6, repeat: Infinity, repeatDelay: 1.2 }}
+          className="absolute bottom-24 right-8 z-20"
+        >
+          <div className="bg-indigo-600 text-white text-base px-5 py-3 rounded-full shadow-lg flex items-center gap-2">
+            💡 Try popping the bubbles
+          </div>
+        </motion.div>
+      )}
       {/* Scroll indicator */}
       <motion.div
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
