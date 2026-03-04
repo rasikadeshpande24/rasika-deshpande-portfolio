@@ -78,7 +78,7 @@ export function Hero() {
               <div className="absolute inset-0 bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 rounded-full blur-md opacity-75"></div>
               <div className="relative w-full h-full p-1 bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 rounded-full">
                 <ImageWithFallback
-                  src="https://images.unsplash.com/photo-1653732212701-b729f0b08330?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjBkZXZlbG9wZXIlMjBoZWFkc2hvdCUyMHBvcnRyYWl0fGVufDF8fHx8MTc3MjE5MTIwNHww&ixlib=rb-4.1.0&q=80&w=1080"
+                  src="/images/rasikaImage.jpg"
                   alt="Rasika Deshpande - Software Developer"
                   className="w-full h-full object-cover rounded-full border-4 border-white shadow-2xl"
                 />
@@ -128,7 +128,7 @@ export function Hero() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              View Experience
+              View My Experience
               <ArrowRight size={20} />
             </motion.button>
             <motion.button
