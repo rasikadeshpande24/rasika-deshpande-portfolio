@@ -2,6 +2,7 @@ import { Mail, MapPin, Phone, Send } from "lucide-react";
 import { useState } from "react";
 import { motion } from "motion/react";
 import { useInView } from "./hooks/useInView";
+import { email, phone, location } from "../utils/PersonalInfo";
 
 export function Contact() {
   const { ref, isInView } = useInView();
@@ -30,22 +31,21 @@ export function Contact() {
     {
       icon: Mail,
       label: "Email",
-      value: "rasika@example.com",
-      href: "mailto:rasika@example.com",
+      value: email.replace('mailto:', ''),
+      href: email,
       color: "blue",
     },
     {
       icon: Phone,
       label: "Phone",
-      value: "+1 (555) 123-4567",
-      href: "tel:+15551234567",
+      value: phone.replace('tel:', ''),
+      href: phone,
       color: "purple",
     },
     {
       icon: MapPin,
       label: "Location",
-      value: "San Francisco, CA",
-      href: "#",
+      value: location,
       color: "pink",
     },
   ];
@@ -74,11 +74,6 @@ export function Contact() {
               animate={isInView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <h3 className="text-2xl sm:text-3xl mb-6 sm:mb-8 text-gray-900">Get in Touch</h3>
-              <p className="text-base sm:text-lg text-gray-600 mb-8">
-                Feel free to reach out for opportunities, collaborations, or just to say hello.
-                I typically respond within 24 hours.
-              </p>
 
               <div className="space-y-6">
                 {contactInfo.map((info, index) => (
@@ -110,7 +105,7 @@ export function Contact() {
                 className="mt-8 p-6 bg-gradient-to-br from-indigo-50 to-purple-50 rounded-xl border border-indigo-200"
               >
                 <p className="text-gray-700 mb-2">✨ <strong>Quick Response Time</strong></p>
-                <p className="text-sm text-gray-600">Average response time: 24 hours or less</p>
+                <p className="text-sm text-gray-600">Average response time: 24 hours</p>
               </motion.div>
             </motion.div>
 
@@ -134,22 +129,6 @@ export function Contact() {
                     required
                     className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-transparent transition-all bg-white"
                     placeholder="Your name"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="email" className="block text-gray-700 mb-2 text-sm sm:text-base">
-                    Email *
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-transparent transition-all bg-white"
-                    placeholder="your.email@example.com"
                   />
                 </div>
 

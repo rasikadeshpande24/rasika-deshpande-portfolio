@@ -3,6 +3,7 @@ import { ArrowRight, Github, Linkedin, Mail } from "lucide-react";
 import { motion } from "motion/react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { InteractiveBackground } from "./InteractiveBackground";
+import { github, linkedin, email } from "../utils/PersonalInfo";
 
 export function Hero() {
   const [showHint, setShowHint] = useState(true);
@@ -148,9 +149,9 @@ export function Hero() {
             className="flex items-center justify-center gap-6"
           >
             {[
-              { icon: Github, href: "https://github.com/rasikadeshpande24", label: "GitHub" },
-              { icon: Linkedin, href: "https://www.linkedin.com/in/rasikadeshpande2401/", label: "LinkedIn" },
-              { icon: Mail, href: "mailto:rsdesh24@gmail.com", label: "Email" },
+              { icon: Github, href: github, label: "GitHub" },
+              { icon: Linkedin, href: linkedin, label: "LinkedIn" },
+              { icon: Mail, href: email, label: "Email" },
             ].map((social, index) => (
               <motion.a
                 key={index}

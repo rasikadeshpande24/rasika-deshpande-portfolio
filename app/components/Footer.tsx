@@ -1,5 +1,6 @@
 import { Github, Linkedin, Mail, Twitter, ArrowUp } from "lucide-react";
 import { motion } from "motion/react";
+import { github, linkedin, phone, location, email } from "../utils/PersonalInfo";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -16,10 +17,9 @@ export function Footer() {
   };
 
   const socialLinks = [
-    { icon: Github, href: "#", label: "GitHub", color: "hover:text-indigo-400" },
-    { icon: Linkedin, href: "#", label: "LinkedIn", color: "hover:text-blue-400" },
-    { icon: Twitter, href: "#", label: "Twitter", color: "hover:text-sky-400" },
-    { icon: Mail, href: "#", label: "Email", color: "hover:text-pink-400" },
+    { icon: Github, href: github, label: "GitHub", color: "hover:text-indigo-400" },
+    { icon: Linkedin, href: linkedin, label: "LinkedIn", color: "hover:text-blue-400" },
+    { icon: Mail, href: email, label: "Email", color: "hover:text-pink-400" },
   ];
 
   const quickLinks = [
@@ -92,16 +92,16 @@ export function Footer() {
               <h4 className="text-lg sm:text-xl mb-4">Get in Touch</h4>
               <ul className="space-y-3 text-gray-300">
                 <li>
-                  <a href="mailto:rasika@example.com" className="hover:text-white transition-colors">
-                    rasika@example.com
+                  <a href={email} className="hover:text-white transition-colors">
+                    {email.replace('mailto:', '')}
                   </a>
                 </li>
                 <li>
-                  <a href="tel:+15551234567" className="hover:text-white transition-colors">
-                    +1 (555) 123-4567
+                  <a href={phone} className="hover:text-white transition-colors">
+                    {phone.replace('tel:', '')}
                   </a>
                 </li>
-                <li className="text-gray-300">San Francisco, CA</li>
+                <li className="text-gray-300">{location}</li>
               </ul>
             </div>
           </div>
