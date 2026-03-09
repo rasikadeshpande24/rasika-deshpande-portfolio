@@ -66,7 +66,7 @@ export function Skills() {
             className="text-center mb-12 sm:mb-16"
           >
             <h2 className="text-3xl sm:text-4xl lg:text-5xl mb-4 text-gray-900">Technical Skills</h2>
-            <div className="w-20 h-1 bg-gradient-to-r from-indigo-500 to-purple-600 mx-auto mb-6"></div>
+            <div className="mt-3 w-20 h-1 bg-gradient-to-r from-indigo-500 to-purple-600 mx-auto mb-6"></div>
             <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto px-4">
               Comprehensive skill set spanning modern web technologies, cloud platforms, and development best practices.
             </p>
@@ -121,7 +121,7 @@ export function Skills() {
             className="mt-12 sm:mt-16"
           >
             <h3 className="text-2xl sm:text-3xl text-center mb-8 text-gray-900">Certifications & Achievements</h3>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+            <div className="mt-3 grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
               {[
                 { title: "AWS Certified Developer", year: "2023" },
                 { title: "Professional Scrum Master I", year: "2023" },

@@ -55,7 +55,7 @@ export function InteractiveBackground() {
     const centerX = w / 2;
     const centerY = h / 2;
 
-      const exclusionRadius = Math.min(w, h) * 0.45;
+    const exclusionRadius = Math.min(w, h) * 0.55;
 
     const bubbles: Bubble[] = [];
 
@@ -302,9 +302,11 @@ export function InteractiveBackground() {
   }, []);
 
   return (
-    <div style={{ position: "absolute", inset: 0, zIndex: 0 }}>
-      <canvas ref={canvasRef} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", pointerEvents: "auto" }} />
-      <BubbleMessage message={activeMessage} />
+    <div style={{ position: "absolute", inset: 0, zIndex: 15 }}>
+      <canvas ref={canvasRef} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", pointerEvents: "auto", zIndex: 0 }} />
+      <div style={{ position: "absolute", inset: 0, zIndex: 20 }}>
+        <BubbleMessage message={activeMessage} />
+      </div>
       {hoverBubble && (
         <div
           style={{

@@ -58,7 +58,7 @@ export function Experience() {
             className="text-center mb-12 sm:mb-16"
           >
             <h2 className="text-3xl sm:text-4xl lg:text-5xl mb-4 text-gray-900">Professional Experience</h2>
-            <div className="w-20 h-1 bg-gradient-to-r from-indigo-500 to-purple-600 mx-auto mb-6"></div>
+            <div className="mt-3 w-20 h-1 bg-gradient-to-r from-indigo-500 to-purple-600 mx-auto mb-6"></div>
             <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto px-4">
               A few years of hands-on experience in software development across various industries and technologies.
             </p>

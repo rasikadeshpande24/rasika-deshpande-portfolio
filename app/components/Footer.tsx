@@ -49,7 +49,7 @@ export function Footer() {
               >
                 Rasika Deshpande
               </motion.h3>
-              <p className="text-gray-300 mb-6 max-w-md">
+              <p className="mt-2 text-gray-300 mb-6 max-w-md">
                 Passionate software developer crafting elegant solutions with modern technology.
                 Let's build something amazing together.
               </p>
@@ -72,7 +72,7 @@ export function Footer() {
             {/* Quick Links */}
             <div>
               <h4 className="text-lg sm:text-xl mb-4">Quick Links</h4>
-              <ul className="space-y-3">
+              <ul className="mt-2 space-y-3">
                 {quickLinks.map((link, index) => (
                   <li key={index}>
                     <motion.button
@@ -90,7 +90,7 @@ export function Footer() {
             {/* Contact Info */}
             <div>
               <h4 className="text-lg sm:text-xl mb-4">Get in Touch</h4>
-              <ul className="space-y-3 text-gray-300">
+              <ul className="mt-2 space-y-3 text-gray-300">
                 <li>
                   <a href={email} className="hover:text-white transition-colors">
                     {email.replace('mailto:', '')}

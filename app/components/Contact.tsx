@@ -51,7 +51,7 @@ export function Contact() {
   ];
 
   return (
-    <section id="contact" className="py-16 sm:py-20 lg:py-24 bg-gradient-to-b from-gray-50 to-white relative" ref={ref}>
+    <section id="contact" className="pt-20 pb-20 sm:pt-12 sm:pb-20 lg:pt-18 lg:pb-24 bg-gradient-to-b from-gray-50 to-white relative" ref={ref}>
       <div className="container mx-auto px-4 sm:px-6">
         <div className="max-w-6xl mx-auto">
           <motion.div
@@ -61,7 +61,7 @@ export function Contact() {
             className="text-center mb-12 sm:mb-16"
           >
             <h2 className="text-3xl sm:text-4xl lg:text-5xl mb-4 text-gray-900">Let's Connect</h2>
-            <div className="w-20 h-1 bg-gradient-to-r from-indigo-500 to-purple-600 mx-auto mb-6"></div>
+            <div className="mt-3 w-20 h-1 bg-gradient-to-r from-indigo-500 to-purple-600 mx-auto mb-5"></div>
             <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto px-4">
               I'm always open to discussing new opportunities, collaborations, or just having a chat about technology.
             </p>
