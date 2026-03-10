@@ -7,40 +7,22 @@ export function About() {
 
   const features = [
     {
-      icon: Code2,
-      title: "Clean Code",
-      description: "Writing maintainable, scalable code following industry best practices and design patterns.",
-      color: "blue",
-    },
-    {
       icon: Users,
-      title: "Team Player",
-      description: "Excellent collaboration skills with cross-functional teams in agile environments.",
+      title: "Software Development",
+      description: "Passionate software developer with experience in building robust, scalable applications and delivering impactful solutions.",
       color: "purple",
     },
     {
       icon: Rocket,
-      title: "Fast Learner",
-      description: "Quick to adapt to new technologies and frameworks, staying current with industry trends.",
+      title: "Continuous Learning",
+      description: "Always exploring new technologies, improving engineering skills and staying current with industry trends.",
       color: "green",
     },
     {
       icon: Target,
-      title: "Result-Driven",
-      description: "Focused on delivering high-quality solutions that meet business objectives and user needs.",
+      title: "Problem Solving",
+      description: "I approach problems with structured thinking, focusing on understanding the root cause and building solutions that are efficient, reliable, and easy to maintain.",
       color: "orange",
-    },
-    {
-      icon: Palette,
-      title: "UI/UX Focused",
-      description: "Creating intuitive, accessible interfaces that provide exceptional user experiences.",
-      color: "pink",
-    },
-    {
-      icon: Award,
-      title: "Quality First",
-      description: "Committed to code quality, testing, and continuous improvement of development processes.",
-      color: "indigo",
     },
   ];
 
@@ -65,8 +47,8 @@ export function About() {
           >
             <h2 className="text-3xl sm:text-4xl lg:text-5xl mb-4 text-gray-900">About Me</h2>
             <div className="mt-3 w-20 h-1 bg-gradient-to-r from-indigo-500 to-purple-600 mx-auto mb-6"></div>
-            <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto px-4">
-              Passionate software developer with experience in building robust, scalable applications and delivering impactful solutions.
+            <p className="text-lg sm:text-xl text-gray-600 max-w-4xl mx-auto px-4">
+              Software developer focused on building reliable and scalable applications. I enjoy solving complex engineering problems and designing systems that are clean, maintainable, and efficient. I work well in collaborative environments and aim to deliver practical software solutions grounded in strong engineering principles.
             </p>
           </motion.div>
 

@@ -113,7 +113,7 @@ export function Hero() {
             transition={{ delay: 0.6, duration: 0.5 }}
           >
             <p className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto mb-8 sm:mb-12 px-4">
-              Crafting elegant solutions with modern technology. Building scalable web applications and delivering high-quality software solutions.
+              Crafting elegant solutions with modern technology. Building scalable applications and delivering high-quality software solutions.
             </p>
           </motion.div>
 
