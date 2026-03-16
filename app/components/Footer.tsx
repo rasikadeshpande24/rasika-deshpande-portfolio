@@ -26,6 +26,7 @@ export function Footer() {
     { label: "About", id: "about" },
     { label: "Experience", id: "experience" },
     { label: "Skills", id: "skills" },
+    { label: "Education", id: "education" },
     { label: "Contact", id: "contact" },
   ];
 
