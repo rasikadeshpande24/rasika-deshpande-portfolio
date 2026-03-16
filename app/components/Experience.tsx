@@ -1,4 +1,3 @@
-import { Briefcase, Calendar } from "lucide-react";
 import { motion } from "motion/react";
 import { useInView } from "./hooks/useInView";
 
@@ -7,134 +6,166 @@ export function Experience() {
 
   const experiences = [
     {
-      role: "Senior Software Developer",
-      company: "Tech Innovations Inc.",
-      period: "Jan 2024 - Present",
-      description: "Leading development of enterprise-level applications and mentoring junior developers.",
+      company: "Principal Global Services",
+      role: "Software Engineer",
+      period: "July 2023 – Present",
       achievements: [
-        "Architected and developed a microservices-based platform serving 100K+ users",
-        "Improved application performance by 40% through code optimization and caching strategies",
-        "Led a team of 3 developers in delivering critical features ahead of schedule",
-        "Implemented CI/CD pipelines reducing deployment time by 60%",
+        "Contributed to cloud modernization initiatives, migrating on-premise systems to AWS while enhancing application performance and user experience, delivering cost savings exceeding $60K.",
+        "Developed and maintained REST APIs for enterprise applications using Java and Spring Boot.",
+        "Worked on full-stack applications using React, JSF, and Next.js alongside backend services.",
+        "Implemented manager-layer integrations to retrieve and process data from DB2, supporting backend services and business workflows.",
+        "Built serverless applications using AWS Lambda, API Gateway, CloudWatch, CloudFront, and DynamoDB.",
+        "Mentored junior engineers and collaborated within Agile development teams, contributing to sprint planning, development, and code reviews.",
+        "Leveraged AI-assisted development tools to automate tasks such as log analysis and documentation generation, improving development efficiency.",
+        "Ranked Top 5 out of 200 participants in the company-wide AWS AI League Hackathon and received multiple monthly and quarterly engineering awards.",
       ],
-      technologies: ["React", "TypeScript", "Node.js", "AWS", "Docker", "PostgreSQL"],
+      technologies: [
+        "AWS",
+        "Java",
+        "Spring Boot",
+        "React",
+        "Next.js",
+        "TypeScript",
+        "REST APIs",
+        "AWS Lambda",
+        "API Gateway",
+        "DynamoDB",
+        "CloudFront",
+        "CloudWatch",
+        "DB2",
+        "JSF",
+      ],
     },
     {
-      role: "Software Developer",
-      company: "Digital Solutions Corp.",
-      period: "Jun 2022 - Dec 2023",
-      description: "Developed and maintained full-stack web applications for various clients.",
+      company: "ArrayPointer",
+      role: "Machine Learning Intern",
+      period: "July 2022 – April 2023",
       achievements: [
-        "Built RESTful APIs handling 500K+ requests daily with 99.9% uptime",
-        "Developed responsive web applications used by 50K+ active users",
-        "Collaborated with UX designers to implement pixel-perfect interfaces",
-        "Reduced bug reports by 35% through comprehensive unit and integration testing",
+        "Developed a machine learning model to forecast restaurant revenue and demand using historical and real-time sales data from multiple restaurants in Bangalore.",
+        "Engineered and selected highly correlated features to capture trend and seasonality patterns, improving forecasting performance across multiple time windows.",
+        "Implemented and compared multiple deep learning models for demand prediction, achieving 86% forecasting accuracy.",
       ],
-      technologies: ["React", "JavaScript", "Python", "Django", "MongoDB", "Redis"],
-    },
-    {
-      role: "Junior Software Developer",
-      company: "StartUp Ventures",
-      period: "Mar 2021 - May 2022",
-      description: "Contributed to the development of innovative SaaS products in an agile environment.",
-      achievements: [
-        "Developed key features for a customer management system from scratch",
-        "Participated in code reviews and adopted best practices for clean code",
-        "Integrated third-party APIs and services for payment and analytics",
-        "Assisted in database design and optimization for improved query performance",
-      ],
-      technologies: ["Vue.js", "JavaScript", "Express.js", "MySQL", "Git"],
+      technologies: ["Python", "Machine Learning", "Data Analysis", "Deep Learning"],  
     },
   ];
 
+  const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.2,
+    },
+  },
+};
+
+const cardVariants = {
+  hidden: {
+    opacity: 0,
+    y: 40,
+    scale: 0.96,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.6,
+      ease: "easeOut",
+    },
+  },
+};
+
   return (
-    <section id="experience" className="py-16 sm:py-20 lg:py-24 bg-gradient-to-b from-gray-50 to-white relative" ref={ref}>
+    <section
+      id="experience"
+      className="py-16 sm:py-20 lg:py-24 bg-gradient-to-b from-gray-50 to-white"
+      ref={ref}
+    >
       <div className="container mx-auto px-4 sm:px-6">
-        <div className="max-w-6xl mx-auto">
+
+        <div className="max-w-5xl mx-auto">
+
+          {/* Section Header */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
-            className="text-center mb-12 sm:mb-16"
+            className="text-center mb-14"
           >
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl mb-4 text-gray-900">Professional Experience</h2>
-            <div className="mt-3 w-20 h-1 bg-gradient-to-r from-indigo-500 to-purple-600 mx-auto mb-6"></div>
-            <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto px-4">
-              A few years of hands-on experience in software development across various technologies.
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl text-gray-900 mb-4">
+              Professional Experience
+            </h2>
+
+            <div className="w-20 h-1 bg-gradient-to-r from-indigo-500 to-purple-600 mx-auto mb-6 mt-3"></div>
+
+            <p className="text-lg text-gray-600 max-w-4xl mx-auto">
+              Experience building scalable backend systems, cloud-native
+              applications, and modern web platforms.
             </p>
           </motion.div>
 
-          <div className="relative">
-            {/* Timeline line - hidden on mobile */}
-            <div className="hidden lg:block absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gradient-to-b from-indigo-400 via-purple-400 to-pink-400"></div>
+          {/* Experience list */}
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+            className="space-y-20"
+          >
 
-            <div className="space-y-8 sm:space-y-12">
-              {experiences.map((exp, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                  animate={isInView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ duration: 0.6, delay: index * 0.2 }}
-                  className={`relative lg:flex lg:items-center ${
-                    index % 2 === 0 ? "lg:flex-row-reverse" : ""
-                  }`}
-                >
-                  {/* Timeline dot - hidden on mobile */}
-                  <div className="hidden lg:block absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full border-4 border-white shadow-lg z-10"></div>
+            {experiences.map((exp, index) => (
+              <motion.div
+                key={index}
+                variants={cardVariants}
+                whileHover={{ x: 6 }}
+                className="border-l-2 border-indigo-200 pl-3 sm:pl-6"
+              >
+                {/* Company + role */}
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2">
+                  <h3 className="text-xl sm:text-2xl text-gray-900">
+                    {exp.company}
+                  </h3>
 
-                  <div className={`lg:w-1/2 ${index % 2 === 0 ? "lg:pr-12" : "lg:pl-12"}`}>
-                    <motion.div
-                      whileHover={{ scale: 1.02, y: -5 }}
-                      className="bg-white p-6 sm:p-8 rounded-2xl shadow-md border border-gray-100 hover:shadow-xl transition-all duration-300"
+                  <span className="text-sm text-gray-500">
+                    {exp.period}
+                  </span>
+                </div>
+
+                <p className="text-indigo-600 mb-3">
+                  {exp.role}
+                </p>
+
+                {/* Achievements */}
+                <ul className="space-y-2 mb-4">
+                  {exp.achievements.map((a, i) => (
+                    <li
+                      key={i}
+                      className="flex items-start gap-2 text-gray-600 text-sm sm:text-base"
                     >
-                      <div className="flex items-start gap-4 mb-4">
-                        <div className="p-3 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-lg">
-                          <Briefcase className="text-white" size={24} />
-                        </div>
-                        <div className="flex-1">
-                          <h3 className="text-xl sm:text-2xl text-gray-900 mb-1">{exp.role}</h3>
-                          <p className="text-indigo-600 mb-2">{exp.company}</p>
-                          <div className="flex items-center gap-2 text-gray-500 text-sm">
-                            <Calendar size={16} />
-                            <span>{exp.period}</span>
-                          </div>
-                        </div>
-                      </div>
+                      <span className="text-indigo-500 mt-1">•</span>
+                      {a}
+                    </li>
+                  ))}
+                </ul>
 
-                      <p className="text-gray-700 mb-4">{exp.description}</p>
+                {/* Technologies */}
+                <div className="flex flex-wrap gap-2">
+                  {exp.technologies.map((tech, i) => (
+                    <span
+                      key={i}
+                      className="px-3 py-1 text-sm bg-indigo-50 text-indigo-700 rounded-full border border-indigo-200"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
+            ))}
 
-                      <div className="mb-4">
-                        <h4 className="text-sm uppercase tracking-wider text-gray-500 mb-3">Key Achievements</h4>
-                        <ul className="space-y-2">
-                          {exp.achievements.map((achievement, idx) => (
-                            <li key={idx} className="flex items-start gap-2 text-gray-600 text-sm sm:text-base">
-                              <span className="text-indigo-500 mt-1.5 flex-shrink-0">▸</span>
-                              <span>{achievement}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
+          </motion.div>
 
-                      <div>
-                        <h4 className="text-sm uppercase tracking-wider text-gray-500 mb-3">Technologies</h4>
-                        <div className="flex flex-wrap gap-2">
-                          {exp.technologies.map((tech, idx) => (
-                            <span
-                              key={idx}
-                              className="px-3 py-1 bg-gradient-to-r from-indigo-50 to-purple-50 text-indigo-700 rounded-full text-sm border border-indigo-200"
-                            >
-                              {tech}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    </motion.div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
         </div>
+
       </div>
     </section>
   );

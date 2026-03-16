@@ -217,8 +217,8 @@ export function InteractiveBackground() {
       }
     };
 
-    canvas.style.pointerEvents = "auto";
-    canvas.addEventListener("click", handleClick);
+    canvas.style.pointerEvents = "none";
+    window.addEventListener("click", handleClick);
     // Fallback: listen on pointerdown at window level so clicks register even when
     // other elements sit above canvas or pointer events are intercepted.
     window.addEventListener("pointerdown", handleClick as EventListener);
@@ -302,33 +302,47 @@ export function InteractiveBackground() {
   }, []);
 
   return (
-    <div style={{ position: "absolute", inset: 0, zIndex: 15 }}>
-      <canvas ref={canvasRef} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", pointerEvents: "auto", zIndex: 0 }} />
-      <div style={{ position: "absolute", inset: 0, zIndex: 20 }}>
-        <BubbleMessage message={activeMessage} />
-      </div>
-      {hoverBubble && (
-        <div
+    <>
+      {/* Canvas layer (background only) */}
+      <div style={{ position: "absolute", inset: 0, zIndex: 0 }}>
+        <canvas
+          ref={canvasRef}
           style={{
             position: "absolute",
-            left: hoverBubble.x,
-            top: hoverBubble.y,
-            transform: "translate(-50%, -100%)",
-            pointerEvents: "none",
-            background: "rgba(255,255,255,0.9)",
-            backdropFilter: "blur(6px)",
-            padding: "4px 10px",
-            borderRadius: "999px",
-            fontSize: "12px",
-            fontWeight: 500,
-            color: "#8982ea",
-            boxShadow: "0 2px 6px rgba(0,0,0,0.08)"
+            inset: 0,
+            width: "100%",
+            height: "100%",
+            pointerEvents: "none"
           }}
-        >
-          Pop me!
-        </div>
-      )}
-    </div>
+        />
+      </div>
+
+      {/* Message layer ABOVE hero */}
+      <div style={{ position: "absolute", inset: 0, zIndex: 30, pointerEvents: "none" }}>
+        <BubbleMessage message={activeMessage} />
+
+        {hoverBubble && (
+          <div
+            style={{
+              position: "absolute",
+              left: hoverBubble.x,
+              top: hoverBubble.y,
+              transform: "translate(-50%, -100%)",
+              background: "rgba(255,255,255,0.9)",
+              backdropFilter: "blur(6px)",
+              padding: "4px 10px",
+              borderRadius: "999px",
+              fontSize: "12px",
+              fontWeight: 500,
+              color: "#8982ea",
+              boxShadow: "0 2px 6px rgba(0,0,0,0.08)"
+            }}
+          >
+            Pop me!
+          </div>
+        )}
+      </div>
+    </>
   );
 }
 

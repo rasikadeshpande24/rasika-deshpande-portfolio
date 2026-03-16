@@ -13,10 +13,21 @@ export function Contact() {
     message: "",
   });
 
+
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    const subject = encodeURIComponent(formData.subject || "Portfolio Contact");
+
+    const body = encodeURIComponent(
+      `${formData.message}\n\nFrom: ${formData.name}\n--------------------------------\nSent from portfolio`
+    );
+
+    window.location.href = `${email}?subject=${subject}&body=${body}`;
+
     console.log("Form submitted:", formData);
-    alert("Thank you for your message! I'll get back to you soon.");
+    alert("Your email client will open with the message ready to send.");
     setFormData({ name: "", email: "", subject: "", message: "" });
   };
 
