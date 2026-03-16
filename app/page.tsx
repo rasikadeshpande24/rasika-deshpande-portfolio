@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Header, Hero, About, Experience, Skills, Contact, Footer } from './components';
+import { Header, Hero, About, Experience, Skills, Contact, Footer, Education } from './components';
 
 const HomePage = () => {
   return (
@@ -13,6 +13,7 @@ const HomePage = () => {
           <About />
           <Experience />
           <Skills />
+          <Education />
           <Contact />
         </main>
         <Footer />

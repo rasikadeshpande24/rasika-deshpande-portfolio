@@ -1,9 +1,22 @@
+import { useState, useEffect } from "react";
 import { ArrowRight, Github, Linkedin, Mail } from "lucide-react";
 import { motion } from "motion/react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { InteractiveBackground } from "./InteractiveBackground";
+import { github, linkedin, email } from "../utils/PersonalInfo";
 
 export function Hero() {
+  const [showHint, setShowHint] = useState(true);
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowHint(false);
+    }, 4500);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
@@ -11,9 +24,20 @@ export function Hero() {
     }
   };
 
+  useEffect(() => {
+    const checkScreen = () => {
+      setIsDesktop(window.innerWidth >= 768);
+    };
+
+    checkScreen();
+    window.addEventListener("resize", checkScreen);
+
+    return () => window.removeEventListener("resize", checkScreen);
+  }, []);
+
   return (
     <section className="relative z-30 relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 pt-20">
-      <InteractiveBackground />
+      {isDesktop && <InteractiveBackground />}
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
@@ -55,7 +79,7 @@ export function Hero() {
               <div className="absolute inset-0 bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 rounded-full blur-md opacity-75"></div>
               <div className="relative w-full h-full p-1 bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 rounded-full">
                 <ImageWithFallback
-                  src="https://images.unsplash.com/photo-1653732212701-b729f0b08330?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjBkZXZlbG9wZXIlMjBoZWFkc2hvdCUyMHBvcnRyYWl0fGVufDF8fHx8MTc3MjE5MTIwNHww&ixlib=rb-4.1.0&q=80&w=1080"
+                  src="/images/rasikaImage.jpg"
                   alt="Rasika Deshpande - Software Developer"
                   className="w-full h-full object-cover rounded-full border-4 border-white shadow-2xl"
                 />
@@ -89,7 +113,7 @@ export function Hero() {
             transition={{ delay: 0.6, duration: 0.5 }}
           >
             <p className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto mb-8 sm:mb-12 px-4">
-              Crafting elegant solutions with modern technology. Building scalable web applications and delivering high-quality software solutions.
+              Crafting elegant solutions with modern technology. Building scalable applications and delivering high-quality software solutions.
             </p>
           </motion.div>
 
@@ -105,7 +129,7 @@ export function Hero() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              View Experience
+              View My Experience
               <ArrowRight size={20} />
             </motion.button>
             <motion.button
@@ -125,9 +149,9 @@ export function Hero() {
             className="flex items-center justify-center gap-6"
           >
             {[
-              { icon: Github, href: "#", label: "GitHub" },
-              { icon: Linkedin, href: "#", label: "LinkedIn" },
-              { icon: Mail, href: "#", label: "Email" },
+              { icon: Github, href: github, label: "GitHub" },
+              { icon: Linkedin, href: linkedin, label: "LinkedIn" },
+              { icon: Mail, href: email, label: "Email" },
             ].map((social, index) => (
               <motion.a
                 key={index}
@@ -136,6 +160,8 @@ export function Hero() {
                 aria-label={social.label}
                 whileHover={{ scale: 1.1, y: -5 }}
                 whileTap={{ scale: 0.9 }}
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <social.icon size={24} />
               </motion.a>
@@ -144,6 +170,18 @@ export function Hero() {
         </div>
       </div>
 
+      {showHint && isDesktop && (
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0, scale: [1, 1.05, 1] }}
+          transition={{ duration: 0.6, repeat: Infinity, repeatDelay: 1.2 }}
+          className="absolute bottom-24 right-8 z-20"
+        >
+          <div className="bg-indigo-600 text-white text-base px-5 py-3 rounded-full shadow-lg flex items-center gap-2">
+            💡 Try popping the bubbles
+          </div>
+        </motion.div>
+      )}
       {/* Scroll indicator */}
       <motion.div
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2"

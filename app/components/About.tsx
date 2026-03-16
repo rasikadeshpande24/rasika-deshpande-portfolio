@@ -7,40 +7,22 @@ export function About() {
 
   const features = [
     {
-      icon: Code2,
-      title: "Clean Code",
-      description: "Writing maintainable, scalable code following industry best practices and design patterns.",
-      color: "blue",
-    },
-    {
       icon: Users,
-      title: "Team Player",
-      description: "Excellent collaboration skills with cross-functional teams in agile environments.",
+      title: "Software Development",
+      description: "Passionate software developer with experience in building robust, scalable applications and delivering impactful solutions.",
       color: "purple",
     },
     {
       icon: Rocket,
-      title: "Fast Learner",
-      description: "Quick to adapt to new technologies and frameworks, staying current with industry trends.",
+      title: "Continuous Learning",
+      description: "Always exploring new technologies, improving engineering skills and staying current with industry trends.",
       color: "green",
     },
     {
       icon: Target,
-      title: "Result-Driven",
-      description: "Focused on delivering high-quality solutions that meet business objectives and user needs.",
+      title: "Problem Solving",
+      description: "I approach problems with structured thinking, focusing on understanding the root cause and building solutions that are efficient, reliable, and easy to maintain.",
       color: "orange",
-    },
-    {
-      icon: Palette,
-      title: "UI/UX Focused",
-      description: "Creating intuitive, accessible interfaces that provide exceptional user experiences.",
-      color: "pink",
-    },
-    {
-      icon: Award,
-      title: "Quality First",
-      description: "Committed to code quality, testing, and continuous improvement of development processes.",
-      color: "indigo",
     },
   ];
 
@@ -58,15 +40,16 @@ export function About() {
       <div className="container mx-auto px-4 sm:px-6">
         <div className="max-w-7xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.6 }}
             className="text-center mb-12 sm:mb-16"
           >
             <h2 className="text-3xl sm:text-4xl lg:text-5xl mb-4 text-gray-900">About Me</h2>
-            <div className="w-20 h-1 bg-gradient-to-r from-indigo-500 to-purple-600 mx-auto mb-6"></div>
-            <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto px-4">
-              Passionate software developer with experience in building robust, scalable applications and delivering impactful solutions.
+            <div className="mt-3 w-20 h-1 bg-gradient-to-r from-indigo-500 to-purple-600 mx-auto mb-6"></div>
+            <p className="text-lg sm:text-xl text-gray-600 max-w-4xl mx-auto px-4">
+              I enjoy solving complex engineering problems and designing systems that are clean, maintainable, and efficient. I work well in collaborative environments and aim to deliver practical software solutions grounded in strong engineering principles.
             </p>
           </motion.div>
 
@@ -74,9 +57,10 @@ export function About() {
             {features.map((feature, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                initial={{ opacity: 0, y: 40, scale: 0.96 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ duration: 0.6, delay: index * 0.15 }}
                 whileHover={{ y: -8, scale: 1.02 }}
                 className={`p-6 sm:p-8 bg-gradient-to-br from-white to-gray-50 rounded-2xl border ${colorClasses[feature.color].border} shadow-sm hover:shadow-xl transition-all duration-300`}
               >
@@ -84,7 +68,7 @@ export function About() {
                   <feature.icon className={colorClasses[feature.color].icon} size={32} />
                 </div>
                 <h3 className="text-xl sm:text-2xl mb-3 text-gray-900">{feature.title}</h3>
-                <p className="text-gray-600 leading-relaxed">{feature.description}</p>
+                <p className="text-gray-600 leading-relaxed mt-3">{feature.description}</p>
               </motion.div>
             ))}
           </div>

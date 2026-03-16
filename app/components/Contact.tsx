@@ -2,6 +2,7 @@ import { Mail, MapPin, Phone, Send } from "lucide-react";
 import { useState } from "react";
 import { motion } from "motion/react";
 import { useInView } from "./hooks/useInView";
+import { email, phone, location } from "../utils/PersonalInfo";
 
 export function Contact() {
   const { ref, isInView } = useInView();
@@ -12,10 +13,21 @@ export function Contact() {
     message: "",
   });
 
+
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    const subject = encodeURIComponent(formData.subject || "Portfolio Contact");
+
+    const body = encodeURIComponent(
+      `${formData.message}\n\nFrom: ${formData.name}\n--------------------------------\nSent from portfolio`
+    );
+
+    window.location.href = `${email}?subject=${subject}&body=${body}`;
+
     console.log("Form submitted:", formData);
-    alert("Thank you for your message! I'll get back to you soon.");
+    alert("Your email client will open with the message ready to send.");
     setFormData({ name: "", email: "", subject: "", message: "" });
   };
 
@@ -30,28 +42,27 @@ export function Contact() {
     {
       icon: Mail,
       label: "Email",
-      value: "rasika@example.com",
-      href: "mailto:rasika@example.com",
+      value: email.replace('mailto:', ''),
+      href: email,
       color: "blue",
     },
     {
       icon: Phone,
       label: "Phone",
-      value: "+1 (555) 123-4567",
-      href: "tel:+15551234567",
+      value: phone.replace('tel:', ''),
+      href: phone,
       color: "purple",
     },
     {
       icon: MapPin,
       label: "Location",
-      value: "San Francisco, CA",
-      href: "#",
+      value: location,
       color: "pink",
     },
   ];
 
   return (
-    <section id="contact" className="py-16 sm:py-20 lg:py-24 bg-gradient-to-b from-gray-50 to-white relative" ref={ref}>
+    <section id="contact" className="pt-20 pb-20 sm:pt-12 sm:pb-20 lg:pt-18 lg:pb-24 bg-gradient-to-b from-gray-50 to-white relative" ref={ref}>
       <div className="container mx-auto px-4 sm:px-6">
         <div className="max-w-6xl mx-auto">
           <motion.div
@@ -61,7 +72,7 @@ export function Contact() {
             className="text-center mb-12 sm:mb-16"
           >
             <h2 className="text-3xl sm:text-4xl lg:text-5xl mb-4 text-gray-900">Let's Connect</h2>
-            <div className="w-20 h-1 bg-gradient-to-r from-indigo-500 to-purple-600 mx-auto mb-6"></div>
+            <div className="mt-3 w-20 h-1 bg-gradient-to-r from-indigo-500 to-purple-600 mx-auto mb-5"></div>
             <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto px-4">
               I'm always open to discussing new opportunities, collaborations, or just having a chat about technology.
             </p>
@@ -74,11 +85,6 @@ export function Contact() {
               animate={isInView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <h3 className="text-2xl sm:text-3xl mb-6 sm:mb-8 text-gray-900">Get in Touch</h3>
-              <p className="text-base sm:text-lg text-gray-600 mb-8">
-                Feel free to reach out for opportunities, collaborations, or just to say hello.
-                I typically respond within 24 hours.
-              </p>
 
               <div className="space-y-6">
                 {contactInfo.map((info, index) => (
@@ -110,7 +116,7 @@ export function Contact() {
                 className="mt-8 p-6 bg-gradient-to-br from-indigo-50 to-purple-50 rounded-xl border border-indigo-200"
               >
                 <p className="text-gray-700 mb-2">✨ <strong>Quick Response Time</strong></p>
-                <p className="text-sm text-gray-600">Average response time: 24 hours or less</p>
+                <p className="text-sm text-gray-600">Average response time: 24 hours</p>
               </motion.div>
             </motion.div>
 
@@ -134,22 +140,6 @@ export function Contact() {
                     required
                     className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-transparent transition-all bg-white"
                     placeholder="Your name"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="email" className="block text-gray-700 mb-2 text-sm sm:text-base">
-                    Email *
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-transparent transition-all bg-white"
-                    placeholder="your.email@example.com"
                   />
                 </div>
 

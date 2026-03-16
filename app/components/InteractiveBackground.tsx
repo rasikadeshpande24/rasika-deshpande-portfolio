@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import { BubbleMessage } from "./BubbleMessage";
+import { bubbleMessages } from "../utils/BubbleMessagesText";
 
 interface Bubble {
   x: number;
@@ -19,14 +20,7 @@ export function InteractiveBackground() {
   const particlesRef = useRef<Array<{ x: number; y: number; vx: number; vy: number; life: number }>>([]);
   const sizeRef = useRef({ width: 0, height: 0, dpr: 1 });
   const messageTimerRef = useRef<number | null>(null);
-  const messages = [
-    "Clean architecture makes me unusually happy.",
-    "APIs are my comfort zone.",
-    "Always building. Always learning.",
-    "Refactoring is underrated therapy.",
-    "Data integrity > quick hacks.",
-    "Engineering with intent.",
-  ];
+  const [hoverBubble, setHoverBubble] = useState<{ x: number; y: number } | null>(null);
   const [activeMessage, setActiveMessage] = useState<{
     text: string;
     x: number;
@@ -38,11 +32,6 @@ export function InteractiveBackground() {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    // Hide & skip on small screens (mobile)
-    if (window.innerWidth < 768) {
-      canvas.style.display = 'none';
-      return;
-    }
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
@@ -60,36 +49,63 @@ export function InteractiveBackground() {
     window.addEventListener("resize", resize);
 
     const createBubbles = (count: number) => {
-      const w = sizeRef.current.width || canvas.getBoundingClientRect().width;
-      const h = sizeRef.current.height || canvas.getBoundingClientRect().height;
+    const w = sizeRef.current.width || canvas.getBoundingClientRect().width;
+    const h = sizeRef.current.height || canvas.getBoundingClientRect().height;
 
-      bubblesRef.current = Array.from({ length: count }, () => {
-        const isSide = Math.random() < 0.7;
-        let x;
+    const centerX = w / 2;
+    const centerY = h / 2;
 
-        if (isSide) {
-          const left = Math.random() < 0.5;
-          x = left
-            ? Math.random() * (0.35 * w)
-            : w - Math.random() * (0.35 * w);
-        } else {
-          x = 0.35 * w + Math.random() * (0.3 * w);
-        }
+    const exclusionRadius = Math.min(w, h) * 0.55;
 
+    const bubbles: Bubble[] = [];
+
+      const MAX_ATTEMPTS = 5000;
+      let attempts = 0;
+
+      while (bubbles.length < count && attempts < MAX_ATTEMPTS) {
+        attempts++;
+
+        const radius = Math.random() * 22 + 10;
+        const x = Math.random() * w;
         const y = Math.random() * h;
 
-        return {
+        const dx = x - centerX;
+        const dy = y - centerY;
+        const distanceFromCenter = Math.sqrt(dx * dx + dy * dy);
+
+        // Skip if inside center exclusion zone
+        if (distanceFromCenter < exclusionRadius) continue;
+
+        // Check overlap with existing bubbles
+        let overlaps = false;
+
+        for (const b of bubbles) {
+          const distX = x - b.x;
+          const distY = y - b.y;
+          const dist = Math.sqrt(distX * distX + distY * distY);
+
+          if (dist < radius + b.radius + 8) {
+            overlaps = true;
+            break;
+          }
+        }
+
+        if (overlaps) continue;
+
+        bubbles.push({
           x,
           y,
           baseX: x,
           baseY: y,
-          radius: Math.random() * 24 + 12,
+          radius,
           phase: Math.random() * Math.PI * 2,
           popping: false,
-        };
-      });
+        });
+      }
+
+      bubblesRef.current = bubbles;
     };
-    createBubbles(window.innerWidth < 1024 ? 20 : 30);
+    createBubbles(window.innerWidth < 1024 ? 15 : 25);
     // Debug: log initial sizing and bubble count
     console.log('InteractiveBackground mounted. size:', sizeRef.current, 'bubbles:', bubblesRef.current.length);
 
@@ -123,7 +139,7 @@ export function InteractiveBackground() {
 
       // pick random message
       const random =
-        messages[Math.floor(Math.random() * messages.length)];
+        bubbleMessages[Math.floor(Math.random() * bubbleMessages.length)];
 
       const w = sizeRef.current.width;
       const h = sizeRef.current.height;
@@ -173,11 +189,40 @@ export function InteractiveBackground() {
       }
     };
 
-    canvas.style.pointerEvents = "auto";
-    canvas.addEventListener("click", handleClick);
+    const handleMouseMove = (e: MouseEvent) => {
+      const rect = canvas.getBoundingClientRect();
+
+      const mouseX = e.clientX - rect.left;
+      const mouseY = e.clientY - rect.top;
+
+      let hovering: Bubble | null = null;
+
+      for (const b of bubblesRef.current) {
+        const dx = mouseX - b.x;
+        const dy = mouseY - b.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+
+        if (distance <= b.radius) {
+          hovering = b;
+          break;
+        }
+      }
+
+      if (hovering) {
+        document.body.style.cursor = "pointer";
+        setHoverBubble({ x: hovering.x, y: hovering.y - hovering.radius - 12 });
+      } else {
+        document.body.style.cursor = "default";
+        setHoverBubble(null);
+      }
+    };
+
+    canvas.style.pointerEvents = "none";
+    window.addEventListener("click", handleClick);
     // Fallback: listen on pointerdown at window level so clicks register even when
     // other elements sit above canvas or pointer events are intercepted.
     window.addEventListener("pointerdown", handleClick as EventListener);
+    window.addEventListener("mousemove", handleMouseMove);
 
     let raf = 0;
     const animate = () => {
@@ -249,16 +294,55 @@ export function InteractiveBackground() {
       window.removeEventListener("resize", resize);
       canvas.removeEventListener("click", handleClick);
       window.removeEventListener("pointerdown", handleClick as EventListener);
+      window.removeEventListener("mousemove", handleMouseMove);
+      document.body.style.cursor = "default";
       cancelAnimationFrame(raf);
       if (audioCtx && audioCtx.close) audioCtx.close();
     };
   }, []);
 
   return (
-    <div style={{ position: "absolute", inset: 0, pointerEvents: "none", zIndex: 0 }}>
-      <canvas ref={canvasRef} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", pointerEvents: "auto" }} />
-      <BubbleMessage message={activeMessage} />
-    </div>
+    <>
+      {/* Canvas layer (background only) */}
+      <div style={{ position: "absolute", inset: 0, zIndex: 0 }}>
+        <canvas
+          ref={canvasRef}
+          style={{
+            position: "absolute",
+            inset: 0,
+            width: "100%",
+            height: "100%",
+            pointerEvents: "none"
+          }}
+        />
+      </div>
+
+      {/* Message layer ABOVE hero */}
+      <div style={{ position: "absolute", inset: 0, zIndex: 30, pointerEvents: "none" }}>
+        <BubbleMessage message={activeMessage} />
+
+        {hoverBubble && (
+          <div
+            style={{
+              position: "absolute",
+              left: hoverBubble.x,
+              top: hoverBubble.y,
+              transform: "translate(-50%, -100%)",
+              background: "rgba(255,255,255,0.9)",
+              backdropFilter: "blur(6px)",
+              padding: "4px 10px",
+              borderRadius: "999px",
+              fontSize: "12px",
+              fontWeight: 500,
+              color: "#8982ea",
+              boxShadow: "0 2px 6px rgba(0,0,0,0.08)"
+            }}
+          >
+            Pop me!
+          </div>
+        )}
+      </div>
+    </>
   );
 }
 
