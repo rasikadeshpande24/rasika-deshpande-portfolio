@@ -1,5 +1,6 @@
 import { motion } from "motion/react";
 import { useInView } from "./hooks/useInView";
+import type { Variants } from "motion/react";
 
 export function Experience() {
   const { ref, isInView } = useInView();
@@ -50,30 +51,30 @@ export function Experience() {
   ];
 
   const containerVariants = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.2,
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.2,
+      },
     },
-  },
-};
+  };
 
-const cardVariants = {
-  hidden: {
-    opacity: 0,
-    y: 40,
-    scale: 0.96,
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: {
-      duration: 0.6,
-      ease: "easeOut",
+  const cardVariants: Variants = {
+    hidden: {
+      opacity: 0,
+      y: 40,
+      scale: 0.96,
     },
-  },
-};
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut",
+      },
+    },
+  };
 
   return (
     <section
