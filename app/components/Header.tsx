@@ -16,10 +16,19 @@ export function Header() {
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-      setIsMenuOpen(false);
-    }
+    const header = document.querySelector("header");
+
+    if (!element || !header) return;
+
+    const headerHeight = header.offsetHeight;
+    const elementTop = element.getBoundingClientRect().top + window.scrollY;
+
+    window.scrollTo({
+      top: elementTop - headerHeight,
+      behavior: "smooth",
+    });
+
+    setIsMenuOpen(false);
   };
 
   const navItems = [
@@ -34,7 +43,7 @@ export function Header() {
     <motion.header
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className={`fixed top-0 left-0 right-0 z-50 h-15 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 h-16 transition-all duration-300 ${
         scrolled
           ? "bg-white/95 backdrop-blur-lg shadow-sm"
           : "bg-white/80 backdrop-blur-md"
@@ -81,28 +90,30 @@ export function Header() {
         {/* Mobile Navigation */}
         <AnimatePresence>
           {isMenuOpen && (
-            <motion.ul
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              className="md:hidden pt-4 pb-2 space-y-4 overflow-hidden"
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              className="md:hidden absolute top-full left-0 right-0 bg-white shadow-lg border-t border-gray-100"
             >
-              {navItems.map((item, index) => (
-                <motion.li
-                  key={item.id}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                >
-                  <button
-                    onClick={() => scrollToSection(item.id)}
-                    className="block w-full text-left text-gray-700 hover:text-indigo-600 transition-colors"
+              <ul className="flex flex-col py-4">
+                {navItems.map((item, index) => (
+                  <motion.li
+                    key={item.id}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.08 }}
                   >
-                    {item.label}
-                  </button>
-                </motion.li>
-              ))}
-            </motion.ul>
+                    <button
+                      onClick={() => scrollToSection(item.id)}
+                      className="w-full text-left px-6 py-3 text-gray-700 hover:text-indigo-600 hover:bg-gray-50 transition-colors"
+                    >
+                      {item.label}
+                    </button>
+                  </motion.li>
+                ))}
+              </ul>
+            </motion.div>
           )}
         </AnimatePresence>
       </nav>
